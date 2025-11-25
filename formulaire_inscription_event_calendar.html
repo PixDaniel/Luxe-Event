@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Le Luxe Parisien s'invite à Abidjan</title>
+
+    <!-- Neue Montreal Font -->
+    <link rel="preconnect" href="https://fonts.cdnfonts.com">
+    <link href="https://fonts.cdnfonts.com/css/neue-montreal" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #f7f4f4;
+        }
+
+        .header-banner {
+            width: 100%;
+            background: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid #000000;
+        }
+
+        .header-banner img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .carousel-frame {
+            max-width: 100%;
+            max-height: 100%;
+            
+            /* Ajuste selon taille de tes images */
+            overflow: hidden;
+            /* Masque les cards en dehors du cadre */
+            border-radius: 24px;
+            box-shadow: 24px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 200%;
+            /* 2 images = 200% ; adapte au nombre de cartes */
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(.76, .05, .27, .99);
+        }
+
+        .card {
+            flex: 0 90%; /* Chaque card occupe 100% du cadre */
+            flex-wrap: wrap;
+            height: 60%;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            box-sizing: border-box;
+            padding: 10px;
+            margin: 0 5%;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .card img {
+            width: 100%;
+            height: max-content;
+            border-radius: 24px;
+            margin-bottom: 24px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+
+        .form-content {
+            padding: 50px 40px;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #000000;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #000000;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            color: #000000;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        label.required::after {
+            content: " *";
+            color: #000000;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #000000;
+            background: #ffffff;
+            font-size: 1em;
+            font-family: 'Neue Montreal', sans-serif;
+            transition: all 0.3s ease;
+            color: #000000;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border: 2px solid #000000;
+            background: #ffffff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            margin-top: 15px;
+        }
+
+        .radio-option,
+        .checkbox-option {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #000000;
+        }
+
+        .radio-option label,
+        .checkbox-option label {
+            text-transform: none;
+            font-weight: 400;
+            letter-spacing: 0;
+            cursor: pointer;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .services-section {
+            background: #f9f9f9;
+            padding: 30px;
+            border: 1px solid #000000;
+            margin: 30px 0;
+        }
+
+        .service-card {
+            background: #ffffff;
+            padding: 25px;
+            border: 1px solid #000000;
+            margin-bottom: 20px;
+        }
+
+        .service-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .service-card h3 {
+            color: #000000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .service-card p {
+            color: #000000;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .calendar-container {
+            margin-top: 20px;
+            border: 1px solid #000000;
+            padding: 20px;
+            background: #ffffff;
+            display: none;
+        }
+
+        .calendar-container iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+
+        .info-box {
+            background: #060606;
+            border-left: 4px solid #000000;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .info-box p {
+            color: #f8f6f6;
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+
+        .submit-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #000000;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: 'Neue Montreal', sans-serif;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: #333333;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .success-message,
+        .error-message {
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+            border: 2px solid;
+        }
+
+        .success-message {
+            background: #f9f9f9;
+            color: #000000;
+            border-color: #000000;
+        }
+
+        .error-message {
+            background: #f9f9f9;
+            color: #000000;
+            border-color: #000000;
+        }
+
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #000000;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .footer {
+            background: #000000;
+            color: #ffffff;
+            padding: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #ffffff;
+            text-decoration: none;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .footer a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .maisons-section {
+                grid-template-columns: 1fr;
+            }
+
+            .maison-card {
+                border-right: none;
+                border-bottom: 1px solid #000000;
+            }
+
+            .maison-card:last-child {
+                border-bottom: none;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-content {
+                padding: 30px 20px;
+            }
+
+            .maison-card {
+                padding: 30px 20px;
+            }
+
+            .calendar-container iframe {
+                height: 400px;
+            }
+        }
+
+        .privacy-notice {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 20px;
+            text-align: center;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #000000;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="container">
+        <!-- HEADER BANNER -->
+        <div class="header-banner">
+            <img src="assets/Bannière Ciffonelli & Casalonga Bottier.svg"
+                alt="Le Luxe Parisien s'invite à Abidjan - Cifonelli & Casalonga Bottier">
+        </div>
+
+        <!-- MAISONS PRESENTATION -->
+        <div class="carousel-frame">
+            <div class="carousel-track">
+                <div class="card">
+                    <img src="assets/13.svg" alt="Card 1">
+                </div>
+                <div class="card">
+                    <img src="assets/14.svg" alt="Card 2">
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-content">
+            <div class="success-message" id="successMessage">
+                <strong>✓ Inscription confirmée !</strong><br>
+                Votre inscription a été enregistrée avec succès. Vous recevrez une confirmation par email avec tous les
+                détails.
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+
+            <form id="inscriptionForm">
+                <!-- INFORMATIONS PERSONNELLES -->
+                <h2 class="section-title">Informations Personnelles</h2>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="civilite" class="required">Civilité</label>
+                        <select id="civilite" name="civilite" required>
+                            <option value="">Sélectionner</option>
+                            <option value="M.">Monsieur</option>
+                            <option value="Mme">Madame</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="nom" class="required">Nom</label>
+                        <input type="text" id="nom" name="nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="prenom" class="required">Prénom</label>
+                        <input type="text" id="prenom" name="prenom" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="telephone" class="required">Téléphone (WhatsApp)</label>
+                    <input type="tel" id="telephone" name="telephone" required placeholder="+225 XX XX XX XX XX">
+                </div>
+
+                <!-- SERVICES D'INTÉRÊT -->
+                <h2 class="section-title">Services d'Intérêt</h2>
+
+                <div class="services-section">
+                    <div class="service-card">
+                        <h3>Cifonelli - Tailleur Sur-Mesure</h3>
+                        <p>Grande mesure, épaule signature, coupe sculptée</p>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="costume" name="services[]" value="Costume sur-mesure">
+                                <label for="costume">Costume sur-mesure (à partir de 3 900€)</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="veste" name="services[]" value="Veste destructurée">
+                                <label for="veste">Veste destructurée (à partir de 1 650€)</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="chemise" name="services[]" value="Chemise sur-mesure">
+                                <label for="chemise">Chemise sur-mesure (à partir de 650€)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>Casalonga Bottier - Souliers Sur-Mesure</h3>
+                        <p>Botterie haute facture, façonné main</p>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="soulier" name="services[]" value="Soulier sur-mesure">
+                                <label for="soulier">Soulier sur-mesure (à partir de 7 000€)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="autres_interets">Autres précisions ou demandes spécifiques</label>
+                        <textarea id="autres_interets" name="autres_interets"
+                            placeholder="Mentionnez ici toute demande particulière..."></textarea>
+                    </div>
+                </div>
+
+                <!-- RÉSERVATION CONSULTATION -->
+                <h2 class="section-title">Réservation de Consultation Privée</h2>
+
+                <div class="info-box">
+                    <p><strong>Places limitées pour la Soirée d'ouverture à La Résidence Abidjan</strong></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="consultation" class="required">Quelle sera votre formule de participation ?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="oui_consultation" name="consultation" value="Oui" required>
+                            <label for="oui_consultation">Expérience Complète : Cocktail (15 Déc) + Consultation Privée
+                                (16-17 Déc)</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="non_consultation" name="consultation" value="Non">
+                            <label for="non_consultation">Cocktail Uniquement : Soirée du 15 Décembre</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="oui_consultation" name="consultation" value="Oui" required>
+                            <label for="oui_consultation">Consultation Uniquement : Créneau les 16-17 Décembre</label>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="calendar-container" id="calendarContainer">
+                    <p style="margin-bottom: 15px; font-weight: 500;">Sélectionnez votre créneau de consultation dans
+                        l'agenda ci-dessous :</p>
+                    <iframe
+                        src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2ej3WP_TZoXqE0c9l7K7QM-TKKtDJ8SBDxZEOFYmLqJq8KH6ej0YEV_BnKnZN-C7-rlPPMsB3v?gv=true"
+                        style="border: 0" width="100%" height="600" frameborder="0" scrolling="no">
+                    </iframe>
+                    <input type="hidden" id="selected_slot" name="selected_slot">
+                </div>
+
+                <!-- ORIGINE -->
+                <h2 class="section-title">Origine de votre invitation</h2>
+
+                <div class="form-group">
+                    <label for="origine" class="required">Comment avez-vous entendu parler de cet événement ?</label>
+                    <select id="origine" name="origine" required>
+                        <option value="">Sélectionner</option>
+                        <option value="BNI">BNI</option>
+                        <option value="La Résidence Abidjan">La Résidence Abidjan</option>
+                        <option value="Email">Email / Newsletter</option>
+                        <option value="Bouche-à-oreille">Bouche-à-oreille</option>
+                        <option value="Appel téléphonique">Appel téléphonique</option>
+                        <option value="Réseaux sociaux">Réseaux sociaux</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="commentaires">Commentaires ou demandes particulières</label>
+                    <textarea id="commentaires" name="commentaires"
+                        placeholder="Toute information supplémentaire..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="consentement" name="consentement" required>
+                        <label for="consentement" class="required">
+                            J'accepte de recevoir des communications concernant cet événement
+                        </label>
+                    </div>
+                </div>
+
+                <!-- SUBMIT -->
+                <div class="submit-section">
+                    <button type="submit" class="submit-btn" id="submitBtn">Confirmer mon inscription</button>
+
+                    <div class="privacy-notice">
+                        Les informations recueillies sont destinées à NOX BY ELITE LAB pour la gestion de votre
+                        inscription.
+                        Conformément à la réglementation en vigueur, vous disposez d'un droit d'accès, de rectification
+                        et de suppression de vos données.
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p><strong>NOX BY ELITE LAB</strong></p>
+            <p>Cocody II Plateau Vallon, Abidjan, Côte d'Ivoire</p>
+            <p>Email : <a href="mailto:marketing@lelabodelite.com">marketing@lelabodelite.com</a></p>
+            <p style="margin-top: 20px; font-size: 0.85em;">© 2025 NOX BY ELITE LAB - Tous droits réservés</p>
+        </div>
+    </div>
+
+    <script>
+        // ⚙️ CONFIGURATION - Remplacez par l'URL de votre webhook n8n
+        const N8N_WEBHOOK_URL = 'https://votre-instance-n8n.com/webhook/event-inscription';
+
+        // Gestion de l'affichage du calendrier
+        document.querySelectorAll('input[name="consultation"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                const calendarContainer = document.getElementById('calendarContainer');
+                if (this.value === 'Oui') {
+                    calendarContainer.style.display = 'block';
+                    document.getElementById('selected_slot').required = true;
+                } else {
+                    calendarContainer.style.display = 'none';
+                    document.getElementById('selected_slot').required = false;
+                }
+            });
+        });
+
+        // Détection de la sélection dans Google Calendar iframe
+        // Note: L'iframe Google Calendar gère lui-même les réservations
+        // Nous écoutons les messages postés depuis l'iframe
+        window.addEventListener('message', function (event) {
+            // Vérifier que le message vient de Google Calendar
+            if (event.origin === 'https://calendar.google.com') {
+                if (event.data && event.data.selectedSlot) {
+                    document.getElementById('selected_slot').value = JSON.stringify(event.data.selectedSlot);
+                }
+            }
+        });
+
+        // Soumission du formulaire
+        document.getElementById('inscriptionForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            // Validation
+            const consultation = document.querySelector('input[name="consultation"]:checked').value;
+            if (consultation === 'Oui' && !document.getElementById('selected_slot').value) {
+                showError('Veuillez sélectionner un créneau de consultation dans l\'agenda.');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Envoi en cours...';
+
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.style.display = 'flex';
+
+            try {
+                // Collecte des données
+                const formData = new FormData(this);
+                const data = {
+                    timestamp: new Date().toISOString()
+                };
+
+                for (let [key, value] of formData.entries()) {
+                    if (key === 'services[]') {
+                        if (!data.services) data.services = [];
+                        data.services.push(value);
+                    } else {
+                        data[key] = value;
+                    }
+                }
+
+                // Ajouter les informations du créneau si sélectionné
+                if (document.getElementById('selected_slot').value) {
+                    try {
+                        data.slot = JSON.parse(document.getElementById('selected_slot').value);
+                    } catch (e) {
+                        console.error('Erreur parsing slot:', e);
+                    }
+                }
+
+                console.log('Données envoyées:', data);
+
+                // Envoi à n8n
+                const response = await fetch(N8N_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erreur lors de l\'inscription');
+                }
+
+                const result = await response.json();
+
+                // Affichage du message de succès
+                document.getElementById('successMessage').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Réinitialisation après 2 secondes
+                setTimeout(() => {
+                    this.reset();
+                    document.getElementById('calendarContainer').style.display = 'none';
+                    setTimeout(() => {
+                        document.getElementById('successMessage').style.display = 'none';
+                    }, 3000);
+                }, 2000);
+
+            } catch (error) {
+                console.error('Erreur:', error);
+                showError('Une erreur est survenue lors de l\'inscription. Veuillez réessayer ou nous contacter directement à marketing@lelabodelite.com');
+            } finally {
+                loadingOverlay.style.display = 'none';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Confirmer mon inscription';
+            }
+        });
+
+        // Affichage des erreurs
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+    <script>
+        let current = 0;
+        const track = document.querySelector('.carousel-track');
+        const cards = document.querySelectorAll('.card');
+        setInterval(() => {
+            current = (current + 1) % cards.length;
+            track.style.transform = `translateX(-${current * 53}%)`;
+        }, 5000); // change toutes les 5 sec
+    </script>
+</body>
+
+</html>
