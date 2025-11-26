@@ -228,7 +228,7 @@
         /* ===============================================
            SYSTÈME DE RÉSERVATION DE CRÉNEAUX
            =============================================== */
-        
+
         .booking-section {
             margin-top: 30px;
             padding: 30px;
@@ -390,6 +390,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -665,6 +666,100 @@
                 font-size: 0.9em;
             }
         }
+
+        /* ===============================================
+   SECTION PARTENAIRES
+   =============================================== */
+
+        .partners-section {
+            margin-top: 30px;
+            padding: 30px 20px;
+            background: #ffffff;
+            border: 1px solid #000000;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .partners-title {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .partners-carousel {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .partners-track {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            animation: scroll-partners 20s linear infinite;
+            width: max-content;
+        }
+
+        .partners-carousel:hover .partners-track {
+            animation-play-state: paused;
+        }
+
+        .partner-logo {
+            flex-shrink: 0;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+
+        .partner-logo:hover {
+            opacity: 1;
+        }
+
+        .partner-logo img {
+            max-height: 60px;
+            max-width: 150px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transition: filter 0.8s ease;
+        }
+
+        .partner-logo:hover img {
+            filter: grayscale(0%);
+        }
+
+        @keyframes scroll-partners {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .partners-track {
+                gap: 40px;
+                animation-duration: 10s;
+            }
+
+            .partner-logo {
+                height: 45px;
+            }
+
+            .partner-logo img {
+                max-height: 45px;
+                max-width: 120px;
+            }
+        }
     </style>
 </head>
 
@@ -722,17 +817,20 @@
                 <div class="row">
                     <div class="form-group">
                         <label for="nom" class="required">Nom</label>
-                        <input type="text" id="nom" name="nom" required>
+                        <input type="text" id="nom" name="nom" required pattern="^[A-Z][a-zA-ZÀ-ÿ\s\-']{1,50}$"
+                            title="Le nom doit commencer par une majuscule">
                     </div>
                     <div class="form-group">
                         <label for="prenom" class="required">Prénom</label>
-                        <input type="text" id="prenom" name="prenom" required>
+                        <input type="text" id="prenom" name="prenom" required pattern="^[A-Z][a-zA-ZÀ-ÿ\s\-']{1,50}$"
+                            title="Le prénom doit commencer par une majuscule">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="telephone" class="required">Téléphone (WhatsApp)</label>
-                    <input type="tel" id="telephone" name="telephone" required placeholder="+225 XX XX XX XX XX">
+                    <input type="tel" id="telephone" name="telephone" required placeholder="+225 07 00 00 00 00"
+                        pattern="^\+?[0-9\s\-]{8,20}$" title="Entrez un numéro valide (ex: +225 07 00 00 00 00)">
                 </div>
 
                 <!-- SERVICES D'INTÉRÊT -->
@@ -745,15 +843,18 @@
                         <p>Grande mesure, épaule signature, coupe sculptée</p>
                         <div class="checkbox-group">
                             <div class="checkbox-option">
-                                <input type="checkbox" id="costume" name="services[]" value="Costume sur-mesure" data-service="cifonelli">
+                                <input type="checkbox" id="costume" name="services[]" value="Costume sur-mesure"
+                                    data-service="cifonelli">
                                 <label for="costume">Costume sur-mesure (à partir de 3 900€)</label>
                             </div>
                             <div class="checkbox-option">
-                                <input type="checkbox" id="veste" name="services[]" value="Veste destructurée" data-service="cifonelli">
+                                <input type="checkbox" id="veste" name="services[]" value="Veste destructurée"
+                                    data-service="cifonelli">
                                 <label for="veste">Veste destructurée (à partir de 1 650€)</label>
                             </div>
                             <div class="checkbox-option">
-                                <input type="checkbox" id="chemise" name="services[]" value="Chemise sur-mesure" data-service="cifonelli">
+                                <input type="checkbox" id="chemise" name="services[]" value="Chemise sur-mesure"
+                                    data-service="cifonelli">
                                 <label for="chemise">Chemise sur-mesure (à partir de 650€)</label>
                             </div>
                         </div>
@@ -765,7 +866,8 @@
                         <p>Botterie haute facture, façonné main</p>
                         <div class="checkbox-group">
                             <div class="checkbox-option">
-                                <input type="checkbox" id="soulier" name="services[]" value="Soulier sur-mesure" data-service="casalonga">
+                                <input type="checkbox" id="soulier" name="services[]" value="Soulier sur-mesure"
+                                    data-service="casalonga">
                                 <label for="soulier">Soulier sur-mesure (à partir de 7 000€)</label>
                             </div>
                         </div>
@@ -783,23 +885,28 @@
 
                 <div class="info-box">
                     <p><strong>Événement Exclusif à La Résidence Abidjan</strong><br>
-                    Cocktail d'ouverture le 15 Décembre, suivi de consultations privées les 16 et 17 Décembre.</p>
+                        Cocktail d'ouverture le 15 Décembre, suivi de consultations privées les 16 et 17 Décembre.</p>
                 </div>
 
                 <div class="form-group">
                     <label class="required">Quelle sera votre formule de participation ?</label>
                     <div class="radio-group">
                         <div class="radio-option">
-                            <input type="radio" id="formule_complete" name="consultation" value="Expérience Complète" required>
-                            <label for="formule_complete">Expérience Complète : Cocktail (15 Déc) + Consultation Privée (16-17 Déc)</label>
+                            <input type="radio" id="formule_complete" name="consultation" value="Expérience Complète"
+                                required>
+                            <label for="formule_complete">Expérience Complète : Cocktail (15 Déc) + Consultation Privée
+                                (16-17 Déc)</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="cocktail_uniquement" name="consultation" value="Cocktail Uniquement">
+                            <input type="radio" id="cocktail_uniquement" name="consultation"
+                                value="Cocktail Uniquement">
                             <label for="cocktail_uniquement">Cocktail Uniquement : Soirée du 15 Décembre</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="consultation_uniquement" name="consultation" value="Consultation Uniquement">
-                            <label for="consultation_uniquement">Consultation Uniquement : Créneau les 16-17 Décembre</label>
+                            <input type="radio" id="consultation_uniquement" name="consultation"
+                                value="Consultation Uniquement">
+                            <label for="consultation_uniquement">Consultation Uniquement : Créneau les 16-17
+                                Décembre</label>
                         </div>
                     </div>
                 </div>
@@ -807,12 +914,15 @@
                 <!-- SYSTÈME DE RÉSERVATION DE CRÉNEAUX -->
                 <div id="bookingContainer" class="hidden">
                     <div class="dual-booking-container">
-                        
+
                         <!-- Calendrier CIFONELLI -->
                         <div id="cifonelliBooking" class="booking-section hidden">
                             <div class="booking-header">
                                 <div class="icon">
-                                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.09 5.1 7.63 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/></svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.09 5.1 7.63 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z" />
+                                    </svg>
                                 </div>
                                 <div>
                                     <h3>Cifonelli - Tailleur</h3>
@@ -852,7 +962,8 @@
                                     <span class="detail-label">Durée</span>
                                     <span class="detail-value">35 minutes</span>
                                 </div>
-                                <button type="button" class="change-btn" onclick="clearBooking('cifonelli')">Modifier</button>
+                                <button type="button" class="change-btn"
+                                    onclick="clearBooking('cifonelli')">Modifier</button>
                             </div>
 
                             <input type="hidden" id="cifonelli_slot" name="cifonelli_slot">
@@ -862,7 +973,10 @@
                         <div id="casalongaBooking" class="booking-section hidden">
                             <div class="booking-header">
                                 <div class="icon">
-                                    <svg viewBox="0 0 24 24"><path d="M19.5 2H4.5C3.12 2 2 3.12 2 4.5v15C2 20.88 3.12 22 4.5 22h15c1.38 0 2.5-1.12 2.5-2.5v-15C22 3.12 20.88 2 19.5 2zM12 6c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0 8c1.65 0 3-1.35 3-3s-1.35-3-3-3-3 1.35-3 3 1.35 3 3 3z"/></svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M19.5 2H4.5C3.12 2 2 3.12 2 4.5v15C2 20.88 3.12 22 4.5 22h15c1.38 0 2.5-1.12 2.5-2.5v-15C22 3.12 20.88 2 19.5 2zM12 6c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0 8c1.65 0 3-1.35 3-3s-1.35-3-3-3-3 1.35-3 3 1.35 3 3 3z" />
+                                    </svg>
                                 </div>
                                 <div>
                                     <h3>Casalonga Bottier</h3>
@@ -903,7 +1017,8 @@
                                     <span class="detail-label">Durée</span>
                                     <span class="detail-value">35 minutes</span>
                                 </div>
-                                <button type="button" class="change-btn" onclick="clearBooking('casalonga')">Modifier</button>
+                                <button type="button" class="change-btn"
+                                    onclick="clearBooking('casalonga')">Modifier</button>
                             </div>
 
                             <input type="hidden" id="casalonga_slot" name="casalonga_slot">
@@ -912,9 +1027,12 @@
                     </div>
 
                     <div class="booking-info">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                        <span>Chaque consultation dure 35 minutes. Les créneaux grisés sont déjà réservés. 
-                        Vos créneaux seront confirmés après validation de votre inscription.</span>
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                        </svg>
+                        <span>Chaque consultation dure 35 minutes. Les créneaux grisés sont déjà réservés.
+                            Vos créneaux seront confirmés après validation de votre inscription.</span>
                     </div>
                 </div>
 
@@ -955,11 +1073,60 @@
                     <button type="submit" class="submit-btn" id="submitBtn">Confirmer mon inscription</button>
 
                     <div class="privacy-notice">
-                        Les informations recueillies sont destinées à NOX BY ELITE LAB pour la gestion de votre inscription.
+                        Les informations recueillies sont destinées à NOX BY ELITE LAB pour la gestion de votre
+                        inscription.
                         Conformément à la réglementation en vigueur, vous disposez d'un droit d'accès, de rectification
                         et de suppression de vos données.
                     </div>
                 </div>
+
+                <!-- PARTENAIRES -->
+                <div class="partners-section">
+                    <p class="partners-title">Nos Partenaires</p>
+                    <div class="partners-carousel">
+                        <div class="partners-track">
+                            <!-- Premier groupe de logos -->
+                            <div class="partner-logo">
+                                <img src="assets/residence_abidjan_logo.svg" alt="La Résidence Abidjan">
+                            </div>
+                            <div class="partner-logo">
+                                <img src="assets/bni_logo.svg" alt="BNI - Banque Nationale d'Investissement">
+                            </div>
+                            <div class="partner-logo">
+                                <img src="assets/nox360_logo.svg" alt="NOX 360">
+                            </div>
+                            <!-- Duplication pour l'effet infini -->
+                            <div class="partner-logo">
+                                <img src="assets/residence_abidjan_logo.svg" alt="La Résidence Abidjan">
+                            </div>
+                            <div class="partner-logo">
+                                <img src="assets/bni_logo.svg" alt="BNI - Banque Nationale d'Investissement">
+                            </div>
+                            <div class="partner-logo">
+                                <img src="assets/nox360_logo.svg" alt="NOX 360">
+                            </div>
+                            <!-- Duplication pour l'effet infini -->
+                            <div class="partner-logo">
+                                <img src="assets/residence_abidjan_logo.svg" alt="La Résidence Abidjan">
+                            </div>
+                            <div class="partner-logo">
+                                <img src="assets/bni_logo.svg" alt="BNI - Banque Nationale d'Investissement">
+                            </div>
+                            <div class="partner-logo">
+                                <img src="assets/nox360_logo.svg" alt="NOX 360">
+                            </div>
+                            <!-- Duplication pour l'effet infini -->
+                            <div class="partner-logo">
+                                <img src="assets/residence_abidjan_logo.svg" alt="La Résidence Abidjan">
+                            </div>
+                            <div class="partner-logo">
+                                <img src="assets/bni_logo.svg" alt="BNI - Banque Nationale d'Investissement">
+                            </div>
+                            <div class="partner-logo">
+                                <img src="assets/nox360_logo.svg" alt="NOX 360">
+                            </div>
+                        </div>
+                    </div>
             </form>
         </div>
 
@@ -976,12 +1143,12 @@
         // ============================================
         // ⚙️ CONFIGURATION
         // ============================================
-        
+
         // URL du webhook n8n pour récupérer les créneaux disponibles
-        const N8N_GET_SLOTS_URL = 'https://votre-instance-n8n.com/webhook/get-slots';
-        
+        const N8N_GET_SLOTS_URL = 'https://n8n.lelabodelite.com/webhook-test/get-slots';
+
         // URL du webhook n8n pour soumettre l'inscription
-        const N8N_SUBMIT_URL = 'https://votre-instance-n8n.com/webhook/event-inscription';
+        const N8N_SUBMIT_URL = 'https://n8n.lelabodelite.com/webhook-test/event-inscription';
 
         // Configuration des créneaux
         const SLOT_CONFIG = {
@@ -1025,11 +1192,11 @@
 
             while (currentHour < config.endHour || (currentHour === config.endHour && currentMinute === 0)) {
                 const startTime = `${String(currentHour).padStart(2, '0')}:${String(currentMinute).padStart(2, '0')}`;
-                
+
                 // Calculer l'heure de fin
                 let endMinute = currentMinute + config.duration;
                 let endHour = currentHour;
-                
+
                 if (endMinute >= 60) {
                     endHour += Math.floor(endMinute / 60);
                     endMinute = endMinute % 60;
@@ -1179,7 +1346,7 @@
 
         function initDayTabs() {
             document.querySelectorAll('.day-tab').forEach(tab => {
-                tab.addEventListener('click', function() {
+                tab.addEventListener('click', function () {
                     const calendar = this.closest('.day-tabs').dataset.calendar;
                     const day = this.dataset.day;
 
@@ -1205,10 +1372,10 @@
         function updateCalendarVisibility() {
             const consultationValue = document.querySelector('input[name="consultation"]:checked')?.value;
             const bookingContainer = document.getElementById('bookingContainer');
-            
+
             // Vérifier si l'utilisateur veut une consultation
             const needsConsultation = consultationValue === 'Expérience Complète' || consultationValue === 'Consultation Uniquement';
-            
+
             if (!needsConsultation) {
                 bookingContainer.classList.add('hidden');
                 return;
@@ -1257,15 +1424,18 @@
                 const response = await fetch(N8N_GET_SLOTS_URL);
                 if (response.ok) {
                     const data = await response.json();
+
+                    // CORRECTION : accéder à data.booked
                     bookedSlots = {
-                        cifonelli: data.cifonelli || [],
-                        casalonga: data.casalonga || []
+                        cifonelli: data.booked?.cifonelli || [],
+                        casalonga: data.booked?.casalonga || []
                     };
+
+                    console.log('Créneaux réservés chargés:', bookedSlots);
                     initializeAllSlots();
                 }
             } catch (error) {
                 console.log('Mode hors-ligne: utilisation des créneaux par défaut');
-                // En cas d'erreur, on utilise des créneaux vides (tous disponibles)
                 initializeAllSlots();
             }
         }
@@ -1274,8 +1444,33 @@
         // SOUMISSION DU FORMULAIRE
         // ============================================
 
-        document.getElementById('inscriptionForm').addEventListener('submit', async function(e) {
+        document.getElementById('inscriptionForm').addEventListener('submit', async function (e) {
             e.preventDefault();
+
+            // Validation du téléphone
+            const telephone = document.getElementById('telephone').value;
+            const cleanedPhone = telephone.replace(/[\s\-]/g, '');
+            const phoneRegex = /^\+?[0-9]{8,15}$/;
+
+            if (!phoneRegex.test(cleanedPhone)) {
+                showError('Veuillez entrer un numéro de téléphone valide (ex: +225 07 00 00 00 00)');
+                return;
+            }
+
+            // Validation du nom et prénom (doit commencer par une majuscule)
+            const nom = document.getElementById('nom').value;
+            const prenom = document.getElementById('prenom').value;
+            const nameRegex = /^[A-Z][a-zA-ZÀ-ÿ\s\-']{1,50}$/;
+
+            if (!nameRegex.test(nom)) {
+                showError('Le nom doit commencer par une lettre majuscule');
+                return;
+            }
+
+            if (!nameRegex.test(prenom)) {
+                showError('Le prénom doit commencer par une lettre majuscule');
+                return;
+            }
 
             const consultationValue = document.querySelector('input[name="consultation"]:checked')?.value;
             const needsConsultation = consultationValue === 'Expérience Complète' || consultationValue === 'Consultation Uniquement';
@@ -1363,7 +1558,7 @@
                     document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
                     document.querySelectorAll('.booking-summary').forEach(s => s.classList.remove('visible'));
                     initializeAllSlots();
-                    
+
                     setTimeout(() => {
                         document.getElementById('successMessage').style.display = 'none';
                     }, 5000);
@@ -1394,7 +1589,7 @@
         // INITIALISATION
         // ============================================
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Initialiser les onglets de jours
             initDayTabs();
 
@@ -1415,7 +1610,7 @@
             let current = 0;
             const track = document.querySelector('.carousel-track');
             const cards = document.querySelectorAll('.card');
-            
+
             if (track && cards.length > 1) {
                 setInterval(() => {
                     current = (current + 1) % cards.length;
